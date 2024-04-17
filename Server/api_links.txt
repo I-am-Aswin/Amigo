@@ -1,0 +1,18 @@
+/course
+    /list/:dept/:sem
+    /create                 POST
+
+/tt
+    /list/:dept/:day?
+    /create                 POST
+
+/rep
+
+/student
+    /list/:batch/:dept
+    /list/update        POST
+
+/records
+    /data/:date/:ccode
+    /data/dates
+    /data/add               POST

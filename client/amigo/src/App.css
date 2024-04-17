@@ -1,0 +1,25 @@
+.add-records {
+    position: absolute;
+    top: 8rem;
+    right: 4rem;
+    border-radius: 2rem 1rem 1rem 2rem;
+    background-color: rgb(66, 0, 137);
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.add-records:hover {
+    background-color: rgb(80, 0, 165);
+    color: white;
+}
+
+.btn-lavendar {
+    background-color: rgb(66, 0, 137);
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-lavendar:hover {
+    background-color: rgb(107, 29, 190);
+    color: white;
+}

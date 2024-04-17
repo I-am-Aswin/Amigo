@@ -1,0 +1,101 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.period {
+    color: black;
+    text-decoration: none;
+}
+
+.period:hover{
+    color: black;
+}
+
+
+.periods-list {
+    list-style-type: none;
+    display: flex;
+    row-gap:2rem;
+    column-gap: 2rem;
+    /* justify-content: space-evenly; */
+    flex-wrap: wrap;
+}
+
+.period-cont {
+    transition: box-shadow 0.3s;
+    padding: 2rem 0 0 2rem;
+    width: 45%;
+    
+}
+
+.period-cont:hover {
+    box-shadow: 0 0 0.5rem rgb(201, 150, 255);
+}
+
+.green-glow {
+    /* box-shadow: 0 0 5px 1px rgba(0, 255, 0, 0.5); */
+    box-shadow: 0 0 3px 0 rgba(0 ,0, 0, 0.5);
+}
+
+.red-glow {
+    box-shadow: 0 0 5px 2px rgba(255, 0, 0, 1);
+    /* color: red; */
+
+}
+
+.chkbx {
+    transition: box-shadow 0.1s ease-in;
+    transform: background-color 0.1s ease-in;
+}
+
+.chkbx:hover {
+    /* background-color: rgba(153, 221, 255, 0.25); */
+    background-color: rgba(210, 168, 255, 0.20);
+}
+
+.reset-btn {
+    border: none;
+    background-color: transparent;
+    color: rgb(0, 0, 108);
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+
+
+.form-floating .form-label {
+    opacity: 0.7;
+}
+
+
+.LINK {
+    text-decoration: none;
+    transition: text-decoration 0.5s ;
+}
+
+.LINK:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.reg-div {
+    width: 60%;
+}
+
+.reg-form {
+    width: 80%;
+}
+
+.reg-inp {
+    width: 65%;
+}
