@@ -27,11 +27,11 @@ app.use('/rep', routes.rep);
 app.use('/student', routes.student);
 app.use('/records', routes.record );
 app.use('/dept', routes.dept);
-app.use('/hash', hasher);
+app.use('/hash', hasher.router );
 
 
 app.get('/', function(req, res) {
-    res.send("Home Suceesfgss");
+    res.send("Amigo Attendace Manager REST API...");
 })
 
 

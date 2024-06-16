@@ -25,19 +25,27 @@ router.get('/list/:dept/:sem/:ccode?', function (req, res) {
 });
 
 
+/* Request Body
+    sem: number
+    dept: string
+    courses: array( course ) {Id, CName, CAbb, Credits, Batch_Cycle} */
 router.post('/create', uploads.none(), async function(req, res) {
     const courses = JSON.parse(req.body.courses);
     const sem = req.body.sem;
     const department = req.body.dept;
 
-    const insQuery = `INSERT INTO course (CourseCode, CourseName, CourseAbb, Credits, Department, Semester, Batch)  VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    try {
+        const insQuery = `INSERT INTO course (CourseCode, CourseName, CourseAbb, Credits, Department, Semester, Batch)  VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
-    for( let course of courses ) {
-        await dbCon.promise().execute(insQuery, [course["Id"], course["Course"], course["Abbr"], course["Credits"], department, sem, (course["Batch"]) ? true : false]);
-        console.log('Course Added Successfully');
+        for( let course of courses ) {
+            await dbCon.promise().execute(insQuery, [course["Id"], course["Course"], course["Abbr"], course["Credits"], department, sem, (course["Batch"]) ? true : false]);
+        }
+
+        res.json({ok: true, message: "Courses Added Successfully"});
+    } catch ( err ) {
+        console.log(err);
+        res.status(500).json( {ok: false, message: "Error Uploading Data"});
     }
-
-    res.send("Courses Added Successfully");
 });
 
 

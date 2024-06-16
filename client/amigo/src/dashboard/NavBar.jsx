@@ -30,9 +30,9 @@ function NavBar( { rep } ) {
             <span className="h3 mx-auto">Menu</span>
             <ul className="submenu-list">
                 <div className="top-links-submenu">
-                    <li><Link className="LINK">Student details</Link></li>
-                    <li><Link className="LINK">Ccourse Details</Link></li>
-                    <li><Link className="LINK">TimeTable </Link></li>
+                    <li><Link to="/student/uploads" className="LINK">Student details</Link></li>
+                    <li><Link to="/course/uploads" className="LINK">Ccourse Details</Link></li>
+                    <li><Link to="/tt/uploads" className="LINK">TimeTable </Link></li>
                     <li><Link className="LINK">Export Data</Link></li>
                     <li><Link className="LINK">Import Data</Link></li>
                 </div>

@@ -15,4 +15,10 @@ router.post("/", async function(req, res) {
     }
 })
 
-export default router;
+const generator = async ( pass ) => {
+    let salt = await bcrypt.genSalt(8);
+    let hash = await bcrypt.hash( pass, salt );
+    return hash;
+}
+
+export default { router , genPass: generator};

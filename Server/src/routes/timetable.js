@@ -18,18 +18,27 @@ router.get('/list/:dept/:day?', function ( req, res ) {
     });
 });
 
+/* Request Body
+    dept: string,
+    tt: Object( day: periods )
+        periods: Array( { Period, Course} )
+*/
 router.post( '/create', uploads.none(), async function( req, res ) {
     const dept = req.body.dept;
     const tt = JSON.parse( req.body.tt );
     let sqlQuery = `INSERT INTO timetable ( Department, Day, Period, CourseId) VALUES (?, ?, ?, ?);`;
 
-    for( let [key, value] of Object.entries(tt) ) {
-        for( let periods of value ) {
-            await dbCon.promise().execute( sqlQuery, [dept, Number(key), periods["Period"], periods["Course"]]);
-            console.log("TimeTable Entry Added Successfully");
+    try {
+        for( let [key, value] of Object.entries(tt) ) {
+            for( let periods of value ) {
+                await dbCon.promise().execute( sqlQuery, [dept, Number(key), periods["Period"], periods["Course"]]);
+                console.log("TimeTable Entry Added Successfully");
+            }
         }
+        res.json( {ok:true, message:"TimeTable has been created successfully"});
+    } catch ( err ) {
+        res.status(501).json( {ok:false, message:"Error uploading data"});
     }
-    res.send("TimeTable has been created successfully");
 });
 
 

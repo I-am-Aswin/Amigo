@@ -3,6 +3,7 @@ import { dbCon } from "../models/model.js";
 import multer from "multer";
 import csvParser from "csv-parser";
 import { Readable } from "stream";
+import hasher from "../hash/hasher.js";
 
 const router = Router();
 const storage = multer.memoryStorage();
@@ -22,6 +23,11 @@ router.get("/list/:batch/:dept", function (req, res) {
     );
 });
 
+
+/*  student_datasheet - file
+    department - string
+    password - password
+    key_heads - Array( CSV headers ) [ RollNo, Name, MailId ] */
 router.post(
     "/list/update",
     uploads.single("student_datasheet"),
@@ -60,20 +66,20 @@ router.post(
             let insQuery = "INSERT INTO students (RollNo, Name, Department, Batch, MailId, Password) VALUES (?, ?, ?, ?, ?, ?);";
 
             const heads = JSON.parse(req.body.key_heads);
-            const values = results['data'].map((arr) => [arr[heads[0]], arr[heads[1]], req.body.department, Number(arr[heads[3]]), arr[heads[4]], req.body.password]);
+            let pass =  await hasher.genPass(req.body.password);
+            const values = results['data'].map((arr) => [arr[heads[0]], arr[heads[1]], req.body.department, Number(req.body.batch) , arr[heads[2]], pass]);
 
             for (let element of values) {
                 await dbCon.promise().execute(insQuery, element);
-                console.log("Row inserted");
             }
 
             // await dbCon.promise().execute(insQuery, [values])
-            res.send("Data Uploaded Successfully");
+            res.json({ ok:true, message:"Data Uploaded Successfully"});
         }
         catch (error) {
             if (error) {
                 console.log(error);
-                res.send("Error Inserting Data")
+                res.json({ok:false, message:"Error Inserting Data"})
             };
         }
     });
